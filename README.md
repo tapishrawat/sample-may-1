@@ -10,3 +10,7 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 #### create branch from other than current branch or revision using git bash
 - `git branch new-branch-name source-branch-name`
 - `git branch new-branch-name e360cea`
+#### command to delete the branch
+- `git branch -d branch-name`
+- `git branch -D branch-name` to delete the branch which contains the unmerged changes
+#### you can't delete the current branch
