@@ -14,3 +14,6 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 - `git branch -d branch-name`
 - `git branch -D branch-name` to delete the branch which contains the unmerged changes
 #### you can't delete the current branch
+#### Stash 
+- `git stash`
+- `git stash pop`
