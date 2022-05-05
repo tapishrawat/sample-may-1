@@ -18,4 +18,4 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 - `git stash`
 - `git stash pop`
 #### new commit after repository cloned to local system
-- `git clone https://github.com/kul-boa/sample-may.git
+- `git clone https://github.com/kul-boa/sample-may.git`
