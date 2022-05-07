@@ -1,0 +1,4 @@
+target/
+infra_provisioning_using_terraform/.terraform
+infra_provisioning_using_terraform/kul_thinknyx.pem
+infra_provisioning_using_terraform/kul_thinknyx.ppk

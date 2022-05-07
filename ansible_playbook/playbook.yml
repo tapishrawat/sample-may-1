@@ -1,0 +1,118 @@
+- name: first playbook
+  hosts: mine
+  vars:
+    user: thinknyx
+  tasks:
+  - name: create user
+    user:
+      name: "{{ user }}"
+      state: present
+      generate_ssh_key: yes
+    become: yes
+  - name: create multiple user
+    user:
+      name: "{{ item }}"
+      state: present
+      generate_ssh_key: yes
+    become: yes
+	  with_items:
+      - siva
+      - anmol
+      - ashish
+      - kmayer
+- name: Installing packages
+  hosts: mine
+  become: yes
+  tasks: 
+  - name: Installing GIT & Ansible
+    package:
+      name: 
+        - git
+        - ansible
+      state: present
+  - name: installing Docker
+    package:
+      name: docker.io
+      state: present
+  - name: installing Java & Maven
+    package:
+      name: "{{ itme }}"
+      state: present
+    with_items:
+      - default-jdk
+      - maven
+- name: working with files & shell
+  hosts: mine
+  tasks:
+  - name: changing ownership of docker.sock
+    file:
+      state: file
+      path: /var/run/docker.sock
+      owner: ubuntu
+    become: yes
+  - name: checking versions
+    shell: mvn --version && docker version && git --version && ansible --version
+    register: version
+  - name: printing versions
+    debug: var=version.stdout_lines
+- name: my another play
+  hosts: mine
+  tasks:
+  - name: copy file from master to managed node
+    copy:
+      src: ansible.cfg
+      dest: /tmp/ansible.cfg.template
+- name: my another play
+  hosts: team
+  tasks:
+  - name: copy file from master to managed node
+    copy:
+      src: ~/hostname.txt
+      dest: /tmp/hostname.txt
+      remote_src: yes
+- name: play to copy files from managed node to ansible master
+  hosts: team
+  tasks:
+  - name: copy file from master to managed node
+    fetch:
+      src: ~/hostname.txt
+      dest: /tmp/hostname.txt
+- name: using hostname from ansible hosts name from gathered facts as variable
+  hosts: team
+  tasks:
+  - name: copy file from master to managed node
+    fetch:
+      src: ~/hostname.txt
+      dest: "{{ ansible_hostname }}.txt"
+      flat: yes
+- name: using hostname from inventory file as variable
+  hosts: team
+  tasks:
+  - name: copy file from master to managed node
+    fetch:
+      src: ~/hostname.txt
+      dest: "{{ inventory_hostname }}.txt"
+      flat: yes
+    tags:
+    - inventory_hostname_variable
+- name: using hostname from inventory file as variable
+  hosts: mine
+  tasks:
+  - name: reading data from facts
+    debug:
+      msg: "Private IP for {{ ansible_hostname}} is {{ ansible_default_ipv4.address }}"
+    tags:
+    - facts
+- name: Adding conditions with tasks
+  hosts: team
+  tags:
+  - condition
+  tasks:
+  - name: using condition
+    debug:
+      msg: "Private IP for {{ ansible_hostname}} is {{ ansible_default_ipv4.address }}"
+    when: ansible_hostname == "dev"
+  - name: using condition
+    debug:
+      msg: "Private IP for {{ inventory_hostname}} is {{ ansible_default_ipv4.address }}"
+    when: ansible_hostname != "dev"
