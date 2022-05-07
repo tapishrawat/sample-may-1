@@ -22,3 +22,4 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 #### adding some text to check SCM Polling Build Trigger in Jenkins
 #### updated code in branch for build trigger demo Jenkins
 #### added gitub webhook
+#### Automated Deployment Demo in jenkins
