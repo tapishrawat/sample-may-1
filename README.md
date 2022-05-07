@@ -21,3 +21,4 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 - `git clone https://github.com/kul-boa/sample-may.git`
 #### adding some text to check SCM Polling Build Trigger in Jenkins
 #### updated code in branch for build trigger demo Jenkins
+#### added gitub webhook
