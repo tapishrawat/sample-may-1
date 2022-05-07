@@ -19,3 +19,4 @@ This code is is being generated using `mvn archetype:generate -DgroupId=com.thin
 - `git stash pop`
 #### new commit after repository cloned to local system
 - `git clone https://github.com/kul-boa/sample-may.git`
+#### adding some text to check SCM Polling Build Trigger in Jenkins
