@@ -15,5 +15,10 @@ pipeline {
                 }
             }
         }
+	stage('Deploy') {
+            steps {
+                sh "cp target/my-webapp.war ~/tomcat/webapps/tapish.war"
+            }
+         }
     }
 }
